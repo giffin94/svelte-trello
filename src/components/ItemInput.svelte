@@ -1,13 +1,14 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { v4 as uuidv4 } from "uuid";
 
   const dispatch = createEventDispatcher();
 
-  let newToDo = '';
+  let newToDo = "";
 
   function createToDo() {
     dispatch("newItem", {
-      item: { text: newToDo, dateCreated: Date.now(), status: "to-do" },
+      item: { id: uuidv4(), text: newToDo, dateCreated: new Date(), status: "to-do" },
     });
   }
 </script>
@@ -17,4 +18,4 @@ Enter To-Do: <input
   type="text"
   value={newToDo}
 />
-<button on:click={createToDo}>asdghkjd</button>
+<button on:click={createToDo}>Create</button>
